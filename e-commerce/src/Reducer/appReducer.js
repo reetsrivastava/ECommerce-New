@@ -11,7 +11,8 @@ export const TYPE = {
     TOGGLE:"TOGGLE",
     SORT:"SORT",
     TOGGLE_DELIVERY:"TOGGLE_DELIVERY",
-    TOGGLE_INVENTORY:"TOGGLE_INVENTORY"
+    TOGGLE_INVENTORY:"TOGGLE_INVENTORY",
+    CLEAR_FILTERS:"CLEAR_FILTERS"
 }
 
 export function appReducer(state,{type,payload}) {
@@ -38,13 +39,16 @@ export function appReducer(state,{type,payload}) {
             return {...state,sortBy:payload}
 
         case TYPE.TOGGLE_INVENTORY:
-            return {...state,showInventoryFull: !state.showInventoryFull}
+            return (state = {...state, showInventoryFull: !state.showInventoryFull});
 
         case TYPE.TOGGLE_DELIVERY:
-            return {...state,showFastDelivery: !state.showFastDelivery}
+            return (state = {...state, showFastDelivery: !state.showFastDelivery});
+
+        case TYPE.CLEAR_FILTERS:
+            return (state = {...state,showFastDelivery:null,showInventoryFull:null})
 
         default:
-            return {state};
+            return {...state};
     }
 }
 

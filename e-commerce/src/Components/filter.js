@@ -4,25 +4,24 @@ import { data } from "./data";
 import "../component.css"
 
 
- function getSortedData(data,sortBy) {
+export function getSortedData(data,sortBy) {
    if(sortBy && sortBy === "PRICE_LOW_TO_HIGH") {
-       return data.sort((a,b) => a["price"] - b["price"]);
+       return [...data].sort((a,b) => a["price"] - b["price"]);
    }  
    
    if(sortBy && sortBy === "PRICE_HIGH_TO_LOW") {
-       return data.sort((a,b) => b["price"] - a["price"]);
+       return [...data].sort((a,b) => b["price"] - a["price"]);
    }
    return data;
 }
 
-const sortedData = getSortedData(data,sortBy);
 
-function getfilterData(dataList,showFastDelivery,showInventoryFull) {
-    return dataList.filter(({fastDelivery}) => showFastDelivery ? fastDelivery :false)
-    .filter(({inStock}) => showInventoryFull ? false: inStock)
+
+ export function getfilterData(dataList,showFastDelivery,showInventoryFull) {
+    return dataList.filter(({fastDelivery}) => showFastDelivery ? fastDelivery :true).filter(({inStock}) => showInventoryFull ? true: inStock)
 }
 
-export const filteredData = getfilterData(sortedData,showInventoryFull,showFastDelivery)
+
 
 
 export function Filter() {
@@ -30,7 +29,9 @@ export function Filter() {
 
     
     return (
+        
         <div className="filters-wrapper">
+            <div>
             <div>
                 <h3>Price:</h3>
                 <label>
@@ -47,12 +48,12 @@ export function Filter() {
             <div>
                 <h3>Filters:</h3>
                 <label>
-                    <input type="checkbox"  checked={showInventoryFull} onChange={() => dispatch({type:TYPE.TOGGLE_INVENTORY})} />
+                    <input type="checkbox" checked={state.showInventoryFull} onChange={() => dispatch({type:TYPE.TOGGLE_INVENTORY})} />
                     INCLUDE OUT OF STOCK
                 </label>
                 <br />
                 <label>
-                    <input type="checkbox"  checked={showFastDelivery} onChange={() => dispatch({type:TYPE.TOGGLE_DELIVERY})} />
+                    <input type="checkbox" checked={state.showFastDelivery}  onChange={() => dispatch({type:TYPE.TOGGLE_DELIVERY})} />
                     FAST DELIVERY ONLY
                 </label>
                 <hr />
@@ -61,6 +62,11 @@ export function Filter() {
                     <br />
                     <input type="range" />
                 </label>
+            </div>
+            <hr />
+            <div>
+                <button className="btn-link-secondary" onClick={() => dispatch({type:TYPE.CLEAR_FILTERS})}>Clear Filters</button>
+            </div>
             </div>
         </div>
     )

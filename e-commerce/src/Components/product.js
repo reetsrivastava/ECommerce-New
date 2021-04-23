@@ -2,7 +2,7 @@ import { data } from "./data.js";
 // import "./product.css";
 import {TYPE} from "../Reducer/appReducer.js"
 import { useCart } from "../Context/CartContext.js";
-import {Filter,filteredData} from "./filter.js";
+import {Filter,getfilterData,getSortedData} from "./filter.js";
 import "../component.css";
 // import {Cart} from "./cart"
 import {Link} from "react-router-dom";
@@ -13,7 +13,7 @@ import {Link} from "react-router-dom";
 function ShowItemProduct({ item }) {
     const {state,dispatch} = useCart();
 
-    const existWishlist =  state.wishlist.find(wishItem => item.id === wishItem.id);
+    const existWishlist =  state.wishlist.find(wishItem => item.id === wishItem.id); 
     const existCart = state.cart.find(cartItem => item.id === cartItem.id)
     return (
 
@@ -25,7 +25,7 @@ function ShowItemProduct({ item }) {
             <div class="product-card-desc">
                 <span class="badges-span">
                     <span class="badge-rect">{item.ratings} ⭐</span>
-                    <span>{item.inStock ? "🟢" : "🔴"} </span>
+                    <span class="badge-rect">{item.inStock ? "Available" : "Out of Stock"} </span>
                 </span>
                 <h3>{item.name}</h3>
                 <p>Price : {item.price} 
@@ -36,17 +36,16 @@ function ShowItemProduct({ item }) {
             </div>
             {existCart ?
             <Link to="/cart"><button className="btn-secondary" disabled={!item.inStock}>GO TO CART ➡️</button></Link> :
-            <button class="btn-primary" onClick={() => dispatch({type:TYPE.ADD_TO_CART,payload:item})} disabled={!item.inStock} style={{backgroundColor:`${item.inStock ? "" : "#808080"}`}}>ADD TO CART</button>}
+            <button class="btn-primary " onClick={() => dispatch({type:TYPE.ADD_TO_CART,payload:item})} disabled={!item.inStock} style={{backgroundColor:`${item.inStock ? "" : "#808080"}`}}>ADD TO CART</button>}
             
         </div>
-           
-        
-        
     )
 }
 
 export function Product() {
     const {state} = useCart();
+    const sortedData = getSortedData(data,state.sortBy);
+    const filteredData = getfilterData(sortedData,state.showFastDelivery,state.showInventoryFull)
     return (
         <div className="page-wrapper">
             <Filter />
