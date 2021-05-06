@@ -6,11 +6,11 @@ export function Home() {
 
     return (
         <div>
-            <div class="banner">
-                <div class="banner-content">
+            <div className="banner" style={{height:"100vh"}}>
+                <div className="banner-content">
                     <h1>VAJRA</h1>
                     <p>Designed and Developed Products by Professionals</p>
-                    <Link to="/products"><button class="btn-primary">Browse Products</button></Link>
+                    <Link to="/products"><button className="btn-primary">Browse Products</button></Link>
                 </div>
             </div>
         </div>

@@ -50,7 +50,7 @@ export function Product() {
         <div className="page-wrapper">
             <Filter />
             <div className="product-wrapper">
-                <h2>Har Ek Maal</h2>
+                
                 <div className="items-wrapper">
                 {
                     filteredData.map(item => <ShowItemProduct item={item}/>)

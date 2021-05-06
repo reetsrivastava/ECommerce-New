@@ -1,6 +1,7 @@
 import { useState,useReducer } from "react";
 import {useCart} from "../Context/CartContext.js"
 import { TYPE } from "../Reducer/appReducer.js";
+import { EmptyCart } from "./emptyCart.js";
 
 
 
@@ -26,7 +27,7 @@ function ShowItemCart({item}) {
                      <strong>{item.qty}</strong>
 
                      {itemQty ? <button className="btn-link-secondary" onClick={() => dispatch({type:TYPE.DECREASE_ITEM_QTY,payload:item})}>-</button> :
-                     <button className="btn-link-secondary"><i class="far fa-trash-alt" onClick={() => dispatch({type:TYPE.REMOVE_FROM_CART,payload:item})}></i></button>}
+                     <button className="btn-link-secondary" onClick={() => dispatch({type:TYPE.REMOVE_FROM_CART,payload:item})}><i class="far fa-trash-alt"></i></button>}
                      
                      
                  </span>
@@ -41,9 +42,8 @@ export function Cart() {
     const {state} = useCart();
     return (
         <div>
-            <h3>CART</h3>
-            {
-                state.cart.map(cartItem => <ShowItemCart item={cartItem}/>)
+            {   
+                state.cart.length ? state.cart.map(cartItem => <ShowItemCart item={cartItem}/>) : <EmptyCart />
             }
         </div>
     )

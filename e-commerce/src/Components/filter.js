@@ -32,7 +32,7 @@ export function Filter() {
         
         <div className="filters-wrapper">
             <div>
-            <div>
+            <div className="sortOption">
                 <h3>Price:</h3>
                 <label>
                     <input name="sortPrice" type="radio" onChange={() => dispatch({type:TYPE.SORT,payload:"PRICE_LOW_TO_HIGH"})} checked={sortBy && sortBy === "PRICE_LOW_TO_HIGH"} />
@@ -45,7 +45,7 @@ export function Filter() {
                 </label>
             </div>
             <hr />
-            <div>
+            <div className="filterOption">
                 <h3>Filters:</h3>
                 <label>
                     <input type="checkbox" checked={state.showInventoryFull} onChange={() => dispatch({type:TYPE.TOGGLE_INVENTORY})} />
@@ -56,16 +56,16 @@ export function Filter() {
                     <input type="checkbox" checked={state.showFastDelivery}  onChange={() => dispatch({type:TYPE.TOGGLE_DELIVERY})} />
                     FAST DELIVERY ONLY
                 </label>
-                <hr />
+                {/* <hr />
                 <label>
                     PRICE RANGE -- 
                     <br />
                     <input type="range" />
-                </label>
+                </label> */}
             </div>
             <hr />
             <div>
-                <button className="btn-link-secondary" onClick={() => dispatch({type:TYPE.CLEAR_FILTERS})}>Clear Filters</button>
+                <button className="btn-link-secondary clearFilterBtn" onClick={() => dispatch({type:TYPE.CLEAR_FILTERS})}>Clear Filters</button>
             </div>
             </div>
         </div>

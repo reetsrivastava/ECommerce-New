@@ -6,6 +6,7 @@ font-family: 'Zilla Slab Highlight', cursive; */
 
 body {
     font-family: 'Open Sans', sans-serif;
+    background-color: #ffccb1;
 }
 
 .page-wrapper {
@@ -35,19 +36,124 @@ body {
 
 
 .filters-wrapper > div {
-    position: fixed;
     position: sticky;
     line-height: 25px;
-    color: #181818;
+    color: #ca2400;
     padding: 1rem;
     left: 2rem;
-    top: 50px;
-    border-right: 2px solid;
+    top: 90px;
+    border: 1px solid #ffcccb;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #ff2e24;
+    font-size: 20px;
+    line-height: 2;
+}
+
+.clearFilterBtn {
+    font-size: 20px;
+    color: #ca2400;
+    border-color: #ff2e24;
+    cursor: pointer;
 }
 
 
+/* NavBar Styling */
 
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #ff2e24;
+    color: #ffffff;
+}
 
+.homePageBtn {
+    font-size: 1rem;
+}
+
+.routeLink {
+    align-self: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.linkTo {
+    color: #ff2e24;
+    font-size: 15px;
+    background-color: #ffcccb;
+    padding: 5px;
+    border-radius: 2px;
+    margin: auto 10px;
+}
+
+.linkTo > span {
+    background-color: #ffffff;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+/* Empty Cart Styling */
+
+.emptyCart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ff2e24;
+}
+
+.emptyCartBtn {
+    background-color: #ca2400;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 3px;
+    color: #ffccb1;
+}
+
+/* Empty WishList Styling */
+
+.emptyWishlist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ff2e24;
+}
+
+/* Cart Product List Styling */
+
+.product {
+    width: 80%;
+    margin: 1rem auto;
+}
+
+.icon-controls  button {
+    margin: auto 1rem;
+    font-size: 15px;
+}
+
+/* WishList Styling */
+
+.wishItem {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.wishItem > div {
+    margin: auto;
+    width: 80%;
+}
+
+.btn-wishlist {
+    color: #ff2e24;
+    font-size: 15px;
+    background-color: #ffcccb;
+    padding: 5px;
+    border-radius: 2px;
+    margin: 3px 10px;
+    display: inline-block;
+    cursor: pointer;
+}
 
 
 
